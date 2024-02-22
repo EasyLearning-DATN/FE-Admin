@@ -12,6 +12,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UsersComponent } from './components/users/users.component';
+import {allIcons, ColorTheme, NgxBootstrapIconsModule} from "ngx-bootstrap-icons";
+import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,19 @@ import { UsersComponent } from './components/users/users.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    NgxBootstrapIconsModule.pick(allIcons, {
+      theme: ColorTheme.Dark,
+    }),
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(
+
+    );
+  }
+}
