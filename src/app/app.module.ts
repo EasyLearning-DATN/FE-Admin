@@ -14,6 +14,9 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UsersComponent } from './components/users/users.component';
 import {allIcons, ColorTheme, NgxBootstrapIconsModule} from "ngx-bootstrap-icons";
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 @NgModule({
   declarations: [
@@ -34,7 +37,15 @@ import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome
     NgxBootstrapIconsModule.pick(allIcons, {
       theme: ColorTheme.Dark,
     }),
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -45,4 +56,7 @@ export class AppModule {
 
     );
   }
+}
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
 }
