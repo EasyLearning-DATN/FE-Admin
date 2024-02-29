@@ -17,6 +17,9 @@ import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {far} from "@fortawesome/free-regular-svg-icons";
+import {fab} from "@fortawesome/free-brands-svg-icons";
+import {fas} from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   declarations: [
@@ -52,9 +55,7 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {
-    library.addIcons(
-
-    );
+    library.addIconPacks(fas, far, fab)
   }
 }
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
