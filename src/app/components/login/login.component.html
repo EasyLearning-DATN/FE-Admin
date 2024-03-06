@@ -1,1 +1,51 @@
-<p>login works!</p>
+<body class="account-page">
+
+    <div class="main-wrapper">
+        <div class="account-content">
+            <div class="login-wrapper">
+                <div class="login-content">
+                    <div class="login-userset">
+                        <div class="login-logo">
+                            <img src="assets/img/logo.png" alt="img">
+                        </div>
+                        <div class="login-userheading">
+                            <h3>Đăng nhập</h3>
+                            <h4>Đăng nhập tài khoản</h4>
+                        </div>
+                        <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+                            <div class="form-login">
+                                <label>Tài khoản</label>
+                                <div class="form-addons">
+                                    <input type="text" placeholder="Nhập tài khoản" [(ngModel)]="username" name="username">
+                                    <img src="assets/img/icons/mail.svg" alt="img">
+                                </div>
+                            </div>
+                            <div class="form-login">
+                                <label>Mật khẩu</label>
+                                <div class="pass-group">
+                                    <input type="password" class="pass-input" placeholder="Nhập mật khẩu" [(ngModel)] = "password" name="password">
+                                    <span class="fas toggle-password fa-eye-slash"></span>
+                                </div>
+                            </div>
+                            <div class="form-login">
+                                <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="login-img">
+                    <img src="assets/img/login.jpg" alt="img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+
+    <script src="assets/js/feather.min.js"></script>
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/script.js"></script>
+</body>
