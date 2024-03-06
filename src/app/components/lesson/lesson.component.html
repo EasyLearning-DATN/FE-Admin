@@ -137,8 +137,8 @@
                                     <a href="javascript:void(0);"> {{lesson.name}} </a>
                                 </td>
                                 <td>{{lesson.description}}</td>
-                                <td>{{lesson.created_date}}</td>
-                                <td>{{lesson.last_modified_date}}</td>
+                                <td>{{lesson.created_date | date}}</td>
+                                <td>{{lesson.last_modified_date | date}}</td>
                                 <td>{{lesson.is_public}}</td>
                                 <td>{{lesson.created_by}}</td>
                                 <td>

@@ -7,7 +7,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
@@ -18,6 +17,9 @@ import { PackagePremiumComponent } from './components/package-premium/package-pr
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LessonComponent } from './components/lesson/lesson.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { ReportComponent } from './components/lesson/report/report.component';
 
 @NgModule({
   declarations: [
@@ -25,20 +27,22 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    LoginComponent,
     ForgotPasswordComponent,
     ChangePasswordComponent,
     UserInfoComponent,
     UsersComponent,
     PackagePremiumComponent,
     SidebarComponent,
-    LessonComponent
+    LessonComponent,
+    LoginComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
+    FormsModule,
     NgxBootstrapIconsModule.pick(allIcons, {
       theme: ColorTheme.Dark,
     }),

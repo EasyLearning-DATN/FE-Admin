@@ -8,6 +8,7 @@ export const environment = {
     API_ADMIN: "/admin",
     API_PUBLIC: "/public",
     API_MEMBER: "/member",
+    API_REPORT: "/report",
     VERSION_1: "/v1",
     API_USER: "/user",
     API_ROLE: "/role",
