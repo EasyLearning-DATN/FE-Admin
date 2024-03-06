@@ -14,6 +14,10 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UsersComponent } from './components/users/users.component';
 import {allIcons, ColorTheme, NgxBootstrapIconsModule} from "ngx-bootstrap-icons";
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { PackagePremiumComponent } from './components/package-premium/package-premium.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { LessonComponent } from './components/lesson/lesson.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,10 +29,14 @@ import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome
     ForgotPasswordComponent,
     ChangePasswordComponent,
     UserInfoComponent,
-    UsersComponent
+    UsersComponent,
+    PackagePremiumComponent,
+    SidebarComponent,
+    LessonComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     NgbModule,
     NgxBootstrapIconsModule.pick(allIcons, {

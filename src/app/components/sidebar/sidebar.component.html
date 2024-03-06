@@ -1,0 +1,36 @@
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-inner slimscroll">
+        <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="index.html"><img src="assets/img/icons/dashboard.svg" alt="img"><span>
+                            Trang Chủ</span> </a>
+                </li>
+                <li class="submenu">
+                    <a href="javascript:void(0);"><img src="assets/img/icons/product.svg" alt="img"><span>
+                            Người dùng</span> <span class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="productlist.html">Danh sách người dùng</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="javascript:void(0);"><img src="assets/img/icons/sales1.svg" alt="img"><span>
+                            Quản lý bài học</span> <span class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a [routerLink]="['list-lesson']">Danh sách bài học</a></li>
+                        <li><a href="addsales.html">Thêm bài học</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="javascript:void(0);"><img src="assets/img/icons/purchase1.svg" alt="img"><span>
+                            Quản lý gói nâng cấp</span> <span class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a [routerLink]="['premium-manager']">Danh sách gói nâng cấp</a></li>
+                        <li><a href="addpurchase.html">Hoá đơn</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
