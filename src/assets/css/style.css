@@ -4525,7 +4525,8 @@ span.select2-container.select2-container--default.select2-container--open {
 .sidebar .sidebar-menu>ul>li>a {
     padding: 10px 15px;
     position: relative;
-    color: #212b36
+    color: #212b36;
+    text-decoration: none;
 }
 
 .sidebar .sidebar-menu>ul>li>a svg {
