@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {LessonResponses} from "../../responses/lesson/lesson.responses";
 import {Subject} from "rxjs";
+import { ReportResponses } from 'src/app/responses/report/report.responses';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +9,7 @@ import {Subject} from "rxjs";
 export class SharedService {
 
   lessonChanged = new Subject<LessonResponses[]>();
+  reportChanged = new Subject<ReportResponses[]>();
 
   constructor() {
   }
@@ -40,5 +42,15 @@ export class SharedService {
 
   set lessonsByUser(value: LessonResponses) {
     this._lessonsByUser = value;
+  }
+
+  private _reportDetail!: ReportResponses[];
+
+  get reportDetail(): ReportResponses[] {
+    return this._reportDetail;
+  }
+
+  set reportDetail(value: ReportResponses[]) {
+    this._reportDetail = value;
   }
 }

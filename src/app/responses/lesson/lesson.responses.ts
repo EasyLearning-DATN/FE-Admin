@@ -14,10 +14,10 @@
 //     "image_url": "sđsfdfdsfds.jpg"
 // }
 // }
+import { ImageResponses } from "../image/image.responses";
 import {QuestionResponses} from "../question/question.responses";
 
 export interface LessonResponses {
-  data: any;
   id: string;
   name: string;
   description: string;
@@ -26,6 +26,11 @@ export interface LessonResponses {
   last_modified_date: Date;
   last_modified_by: string;
   is_public: boolean;
-  image_url: string;
+  image: ImageResponses;
+  user_info: {
+    id: number;
+    fullName: string;
+    avatar: ImageResponses;
+  };
   questions: QuestionResponses[];
 }

@@ -9,6 +9,8 @@ export const environment = {
     API_PUBLIC: "/public",
     API_MEMBER: "/member",
     API_REPORT: "/report",
+    API_CHANGE_REPORT: "/report/change-status",
+    API_QUESTION: "/question",
     VERSION_1: "/v1",
     API_USER: "/user",
     API_ROLE: "/role",

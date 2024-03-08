@@ -1,0 +1,42 @@
+<a (click)="openEdit(modal)" class="dropdown-item"><img src="assets/img/icons/eye1.svg" class="me-2" alt="img">Xem chi
+  tiết</a>
+
+<ng-template #modal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Chỉnh sửa bài học</h4>
+    <button (click)="d('Cross click')" aria-label="Close" class="btn-close" type="button"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="reportDetailForm">
+      <div class="form-floating mb-3">
+        <input class="form-control" formControlName="name" id="floatingName" placeholder="" type="text" readonly > <label
+          for="floatingName">Người báo cáo</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input class="form-control" formControlName="lessonName" id="floatingName" placeholder="" type="text" readonly > <label
+          for="floatingName">Bài học bị báo cáo: </label>
+      </div>
+      <div class="form-floating mb-3">
+        <!-- Sử dụng directive ngModel để gán giá trị của FormControl `status` cho dropdown -->
+        <select class="form-select" formControlName="status" id="floatingSelect" aria-label="Floating label select example" [(ngModel)]="selectedStatus">
+          <option value="RESOLVED">Đã xử lý</option>
+          <option value="PENDING">Chưa xử lý</option>
+          <option value="REJECT">Từ chối</option>
+        </select>
+        <label for="floatingDescription">Trạng thái:</label>
+      </div>
+      <div class="form-floating mb-3">
+        <textarea class="form-control" formControlName="description" id="floatingDescription" placeholder="" rows="30"
+          type="text" readonly ></textarea> <label for="floatingDescription">Chi tiết:</label>
+      </div>
+      <div class="form-floating mb-3">
+        <label>Ảnh:</label>
+        <img class="me-2" alt="img" [src]="imageUrl">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <!-- <button (click)="openConfirmSave()" class="btn btn-app">Save</button> -->
+    <button (click)="d('Close click')" class="btn btn-app" type="button">Close</button>
+  </div>
+</ng-template>

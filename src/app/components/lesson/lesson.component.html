@@ -132,17 +132,17 @@
                                 </td>
                                 <td class="productimgname">
                                     <a href="javascript:void(0);" class="product-img">
-                                        <img src="{{lesson.image_url}}" alt="courses"/>
+                                        <img src="{{lesson.image.url}}" alt="courses"/>
                                     </a>
                                     <a href="javascript:void(0);"> {{lesson.name}} </a>
                                 </td>
                                 <td>{{lesson.description}}</td>
                                 <td>{{lesson.created_date | date}}</td>
                                 <td>{{lesson.last_modified_date | date}}</td>
-                                <td>{{lesson.is_public}}</td>
-                                <td>{{lesson.created_by}}</td>
+                                <td>{{lesson.is_public ? 'Công khai' : 'Không công khai'}}</td>
+                                <td>{{lesson.user_info.fullName}}</td>
                                 <td>
-                                    <a class="me-3" href="product-details.html">
+                                    <a class="me-3" (click)="openModal(lesson)">
                                         <img src="assets/img/icons/eye.svg" alt="img">
                                     </a>
                                     <a class="me-3" href="editproduct.html">
@@ -158,6 +158,31 @@
                 </div>
             </div>
         </div>
-
+        <ng-template #modal let-c="close" let-d="dismiss">
+            <div class="modal-header">
+                <h4 class="modal-title">Chi tiết bài học</h4>
+                <button (click)="d('Cross click')" aria-label="Close" class="btn-close" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <!-- tên bài học -->
+                <div class="form-group mb-2 row">
+                    <label class="col-sm-3 col-form-label">Tên bài học</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" value="{{lessonDetail.name}}" readonly>
+                    </div>
+                    <label class="col-sm-3 col-form-label">Mô tả</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" value="{{lessonDetail.description}}" readonly>
+                    </div>
+                    <label class="col-sm-3 col-form-label">Người tạo</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" value="{{lessonDetail.user_info.fullName}}" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button (click)="d('Close click')" class="btn btn-secondary" type="button">Đóng</button>
+            </div>
+        </ng-template>
     </div>
 </div>

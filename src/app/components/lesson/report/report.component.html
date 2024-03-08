@@ -14,8 +14,7 @@
                     <div class="table-top">
                         <div class="search-set">
                             <div class="search-input">
-                                <a class="btn btn-searchset"><img src="assets/img/icons/search-white.svg"
-                                        alt="img"></a>
+                                <a class="btn btn-searchset"><img src="assets/img/icons/search-white.svg" alt="img"></a>
                             </div>
                         </div>
                         <div class="wordset">
@@ -65,21 +64,34 @@
                                     <td> {{report.userReport}} </td>
                                     <td> {{report.targetId}} </td>
                                     <td> {{report.reason}} </td>
-                                    <td> {{report.timeReport  | date}} </td>
-                                    <td><span class="badges bg-danger"> {{report.status}} </span></td>
+                                    <td> {{report.timeReport | date}} </td>
+                                    <td><span
+                                            [ngClass]="{'bg-danger': report.status === 'PENDING', 'bg-lightgreen': report.status === 'RESOLVED'}"
+                                            class="badges">
+                                            {{ report.status }}
+                                        </span></td>
                                     <td class="text-center">
                                         <a class="action-set" href="javascript:void(0);" data-bs-toggle="dropdown"
                                             aria-expanded="true">
                                             <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                         </a>
                                         <ul class="dropdown-menu">
+                                            <!-- model xem chi tiết -->
                                             <li>
-                                                <a href="sales-details.html" class="dropdown-item"><img
-                                                        src="assets/img/icons/eye1.svg" class="me-2" alt="img">Xác nhận</a>
+                                                <a (click)="openModal(report)" class="dropdown-item">
+                                                    <img src="assets/img/icons/eye1.svg" class="me-2" alt="img">Xem chi
+                                                    tiết
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="edit-sales.html" class="dropdown-item"><img
-                                                        src="assets/img/icons/edit.svg" class="me-2" alt="img">Từ chối</a>
+                                                <a (click)="onConfirm(report.reportId)" class="dropdown-item"><img
+                                                        src="assets/img/icons/eye1.svg" class="me-2" alt="img">Xác
+                                                    nhận</a>
+                                            </li>
+                                            <li>
+                                                <a (click)="onRefuse()" class="dropdown-item"><img
+                                                        src="assets/img/icons/edit.svg" class="me-2" alt="img">Từ
+                                                    chối</a>
                                             </li>
                                         </ul>
                                     </td>
@@ -89,6 +101,24 @@
                     </div>
                 </div>
             </div>
+            <ng-template #modal let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                    <h4 class="modal-title">Chi tiết báo cáo</h4>
+                    <button (click)="d('Cross click')" aria-label="Close" class="btn-close" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Hiển thị chi tiết của dòng được chọn -->
+                    <p>Ngày báo cáo: {{ selectedReport.timeReport | date }}</p>
+                    <p>Người báo cáo: {{ selectedReport.userReport }}</p>
+                    <p>Bài học bị báo cáo: {{ selectedReport.targetId }}</p>
+                    <p>Nội dung: {{ selectedReport.reason }}</p>
+                    <p> Hình ảnh:</p><img src="{{ selectedReport.imageUrl }}" alt="img">
+                    <p>Trạng thái: {{ selectedReport.status }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button (click)="d('Close click')" class="btn btn-secondary" type="button">Đóng</button>
+                </div>
+            </ng-template>
 
         </div>
     </div>

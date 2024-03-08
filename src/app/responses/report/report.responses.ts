@@ -14,7 +14,7 @@
 //                 "type": "LESSON",
 //                 "userReport": "anhdt"
 //             }
-//         ]
+//         ]  
 //     }
 // }
 
@@ -25,5 +25,6 @@ export interface ReportResponses {
   status: string;
   targetId: string;
   type: string;
+  imageUrl: string;
   userReport: string;
 }
