@@ -26,6 +26,7 @@ import {far} from "@fortawesome/free-regular-svg-icons";
 import {fab} from "@fortawesome/free-brands-svg-icons";
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import { ReportDetailComponent } from './components/lesson/report/report-detail/report-detail.component';
+import { LessonQuestionsComponent } from './components/lesson/lesson-questions/lesson-questions.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ReportDetailComponent } from './components/lesson/report/report-detail/
     LessonComponent,
     LoginComponent,
     ReportComponent,
-    ReportDetailComponent
+    ReportDetailComponent,
+    LessonQuestionsComponent
   ],
   imports: [
     BrowserModule,

@@ -22,8 +22,7 @@
                             </a>
                         </div>
                         <div class="search-input">
-                            <a class="btn btn-searchset"><img src="assets/img/icons/search-white.svg"
-                                    alt="img"></a>
+                            <a class="btn btn-searchset"><img src="assets/img/icons/search-white.svg" alt="img"></a>
                         </div>
                     </div>
                     <div class="wordset">
@@ -132,7 +131,7 @@
                                 </td>
                                 <td class="productimgname">
                                     <a href="javascript:void(0);" class="product-img">
-                                        <img src="{{lesson.image.url}}" alt="courses"/>
+                                        <img src="{{lesson.image.url}}" alt="courses" />
                                     </a>
                                     <a href="javascript:void(0);"> {{lesson.name}} </a>
                                 </td>
@@ -167,16 +166,43 @@
                 <!-- tên bài học -->
                 <div class="form-group mb-2 row">
                     <label class="col-sm-3 col-form-label">Tên bài học</label>
-                    <div class="col-sm-9">
+                    <div class="">
                         <input type="text" class="form-control" value="{{lessonDetail.name}}" readonly>
                     </div>
                     <label class="col-sm-3 col-form-label">Mô tả</label>
-                    <div class="col-sm-9">
+                    <div class="">
                         <input type="text" class="form-control" value="{{lessonDetail.description}}" readonly>
                     </div>
                     <label class="col-sm-3 col-form-label">Người tạo</label>
-                    <div class="col-sm-9">
+                    <div class="">
                         <input type="text" class="form-control" value="{{lessonDetail.user_info.fullName}}" readonly>
+                    </div>
+                    <label class="col-sm-3 col-form-label">Câu hỏi có trong bài: </label>
+                    <div class="">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Câu hỏi</th>
+                                    <th scope="col">Câu trả lời</th>
+                                    <th scope="col">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let question of lessonDetail.questions; let i = index">
+                                    <th scope="row">{{ i + 1 }}</th>
+                                    <td>{{ question.title }}</td>
+                                    <td>
+                                        <div *ngFor="let answer of question.answers">
+                                            <input type="checkbox" [value]="answer.value" [checked]="answer.is_correct" readonly> {{answer.value}}
+                                          </div>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
