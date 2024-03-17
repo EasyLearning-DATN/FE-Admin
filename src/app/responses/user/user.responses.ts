@@ -10,12 +10,17 @@
 //         "dayOfBirth": "2003-07-12",
 //         "locked": false
 //     }
+
+import { RoleResponse } from "../role/role.response";
+
 // }
 export interface UserResponse {
+    id: string;
     username: string;
     fullName: string;
     email: string;
     avatar: string;
     dayOfBirth: string;
     locked?: boolean;
+    ROLE: RoleResponse[];
 }

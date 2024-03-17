@@ -3,6 +3,7 @@ export const environment = {
     apiExternal: 'http://localhost:1001/easy-learning/public/v1',
     apiMember: 'http://localhost:1001/easy-learning/member/v1',
     API_URL: 'http://localhost:1001/easy-learning',
+    API_VERSION: '/v1',
     USER_URL: '/user',
     ADMIN_URL: '/admin',
     API_ADMIN: "/admin",

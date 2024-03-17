@@ -6,6 +6,7 @@ import { PackagePremiumComponent } from './components/package-premium/package-pr
 import { LessonComponent } from './components/lesson/lesson.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReportComponent } from './components/lesson/report/report.component';
+import { UsersComponent } from './components/users/users.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'premium-manager', component: PackagePremiumComponent},
   { path: 'list-lesson', component: LessonComponent},
+  { path: 'list-user', component: UsersComponent},
   { path: 'report-lesson', component: ReportComponent},
 ];
 

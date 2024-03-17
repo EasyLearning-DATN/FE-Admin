@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginDTO } from 'src/app/dtos/user/login.dto';
@@ -17,8 +17,15 @@ export class UserService {
   private apiUpdatePassword = `${environment.apiMember}/user/password`;
   private apiVaildToken = `${environment.apiExternal}/user/valid-token?token=`;
   private apiLogout = `${environment.apiMember}/user/logout`;
+  private apiUser = environment.API_URL + environment.API_ADMIN + environment.API_VERSION + environment.API_USER;
+  private apiGetRole = environment.API_URL + environment.API_ADMIN + environment.API_VERSION + environment.API_ROLE;
 
   constructor(private http: HttpClient) { }
+
+  // get token localStorage
+  getToken(): string {
+    return localStorage.getItem('token') || '';
+  }
 
   login(loginDTO: LoginDTO): Observable<any> {
     return this.http.post(this.apiLogin, loginDTO);
@@ -28,7 +35,7 @@ export class UserService {
     return this.http.post(this.apiSignup, signupDTO);
   }
 
-  forgotPassword(email: string){
+  forgotPassword(email: string) {
     return this.http.get(this.apiForgotPassword + email)
   }
 
@@ -62,6 +69,45 @@ export class UserService {
     return this.http.get<UserResponse>(`${environment.apiMember}/user/info`, {
       headers: {
         Authorization: `Bearer ${token}`
+      }
+    });
+  }
+
+  // get all user
+  getAllUser(token: string): Observable<any> {
+    return this.http.get(this.apiUser, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  }
+
+  deleteUser(userId: any): Observable<any> {
+    return this.http.delete(this.apiUser + '/' + userId, {
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`
+      }
+    });
+  }
+
+  // get role user
+  getRoleUser(userId: any): Observable<any> {
+    let Params = new HttpParams();
+    Params = Params.append('userId', userId);
+    return this.http.get(this.apiGetRole, {
+      headers: {
+    Authorization: `Bearer ${this.getToken()}`
+    },
+    params: Params
+    });
+  }
+
+  updateRoleUser(userId: any, roleId: any): Observable<any> {
+    return this.http.patch(this.apiGetRole, {
+      userId, roleId
+    }, {
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`
       }
     });
   }

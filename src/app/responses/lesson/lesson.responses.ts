@@ -14,8 +14,8 @@
 //     "image_url": "sđsfdfdsfds.jpg"
 // }
 // }
-import { ImageResponses } from "../image/image.responses";
-import {QuestionResponses} from "../question/question.responses";
+import {ImageResponses} from "../image/image.responses";
+import { QuestionResponses } from "../question/question.responses";
 
 export interface LessonResponses {
   id: string;

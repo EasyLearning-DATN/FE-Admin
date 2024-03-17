@@ -1,1 +1,134 @@
-<p>users works!</p>
+<div class="page-wrapper">
+    <div class="content">
+        <div class="page-header">
+            <div class="page-title">
+                <h4>Danh sách user</h4>
+                <h6>Quản lý danh sách user</h6>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="table-top">
+                    <div class="search-set">
+                        <div class="search-path">
+                            <a class="btn btn-filter" id="filter_search">
+                                <img src="assets/img/icons/filter.svg" alt="img">
+                                <span><img src="assets/img/icons/closes.svg" alt="img"></span>
+                            </a>
+                        </div>
+                        <div class="search-input">
+                            <a class="btn btn-searchset"><img src="assets/img/icons/search-white.svg" alt="img"></a>
+                        </div>
+                    </div>
+                    <div class="wordset">
+                        <ul>
+                            <li>
+                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img
+                                        src="assets/img/icons/pdf.svg" alt="img"></a>
+                            </li>
+                            <li>
+                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel"><img
+                                        src="assets/img/icons/excel.svg" alt="img"></a>
+                            </li>
+                            <li>
+                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="print"><img
+                                        src="assets/img/icons/printer.svg" alt="img"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table  datanew">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label class="checkboxs">
+                                        <input type="checkbox" id="select-all">
+                                        <span class="checkmarks"></span>
+                                    </label>
+                                </th>
+                                <th>Họ và tên</th>
+                                <th>Email</th>
+                                <th>Username </th>
+                                <th>Trạng thái</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let user of users">
+                            <tr>
+                                <td>
+                                    <label class="checkboxs">
+                                        <input type="checkbox">
+                                        <span class="checkmarks"></span>
+                                    </label>
+                                </td>
+                                <td>{{user.fullName}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.username}}</td>
+                                <td>{{user.locked? 'Khoá' : 'Hoạt động'}}</td>
+                                <td>
+                                    <a class="me-3">
+                                        <img src="assets/img/icons/edit.svg" alt="img" (click)="openModal(user)">
+                                    </a>
+                                    <a class="confirm-text" href="javascript:void(0);">
+                                        <img src="assets/img/icons/delete.svg" alt="img" (click)="onDelete(user.id)">
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <ng-template #modal let-c="close" let-d="dismiss">
+            <div class="modal-header">
+                <h4 class="modal-title">Chi tiết người dùng</h4>
+                <button (click)="d('Cross click')" aria-label="Close" class="btn-close" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mb-2 row">
+                    <label class="col-sm-3 col-form-label">Họ và tên</label>
+                    <div class="">
+                        <input type="text" class="form-control" value="{{userDetail.fullName}}" readonly>
+                    </div>
+                    <label class="col-sm-3 col-form-label">Email</label>
+                    <div class="">
+                        <input type="text" class="form-control" value="{{userDetail.email}}" readonly>
+                    </div>
+                    <label class="col-sm-3 col-form-label">Username</label>
+                    <div class="">
+                        <input type="text" class="form-control" value="{{userDetail.username}}" readonly>
+                    </div>
+                    <label class="col-sm-6 col-form-label">Trạng thái: <b> {{userDetail.locked? 'Khoá' : 'Hoạt động'}} </b></label>
+                    <div class="">
+                        <div class="form-check form-switch">
+                            <label class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" [(ngModel)]="userDetail.locked">Khoá/Hoạt động
+                            </label>
+                        </div>
+                    </div>
+                    <label class="col-sm-3 col-form-label">ROLE</label>
+                    <div class="">
+                        <select class="form-select" #selectedRole (change)="onChange(selectedRole.value)">
+                            <option [ngValue]="null" disabled>Chọn role</option>
+                            <option [value]="userDetail.role.id" [selected]="userDetail.role.role === 'user'">User
+                            </option>
+                            <option [value]="userDetail.role.id" [selected]="userDetail.role.role === 'admin'">Admin
+                            </option>
+                            <option [value]="userDetail.role.id" [selected]="userDetail.role.role === 'Premium'">Premium
+                            </option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button (click)="d('Close click')" class="btn btn-secondary" type="button">Đóng</button>
+                <button (click)="onSave(userDetail.role.id, selectedRole.value)" class="btn btn-primary"
+                    type="button">Lưu</button>
+            </div>
+        </ng-template>
+    </div>
+</div>
