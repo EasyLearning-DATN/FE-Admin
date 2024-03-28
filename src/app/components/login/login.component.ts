@@ -27,31 +27,53 @@ export class LoginComponent {
         password: this.password
       };
       console.log(loginDTO);
+      Swal.fire({
+        title: 'Đang đăng nhập...',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      
+      });
       this.userService.login(loginDTO).subscribe(
         (response: any) => {
           const token = response.data.token;
-          Swal.fire({
-            icon: 'success',
-            title: 'Đăng nhập thành công!',
-            text: 'Bạn đã đăng nhập thành công tài khoản!',
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'OK'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              // lấy user info và đưa thông tin vào userResponse
-              this.userService.getUserInfo(token).subscribe(
-                (data : any) => {
-                  const userInfo = data.data;
-                  // set userInfo vào UserResponse
-                  this.userResponse = userInfo;
-                  localStorage.setItem('userInfo', JSON.stringify(this.userResponse));
-                  localStorage.setItem('token', token);
-                  location.assign('/');
+         localStorage.setItem('token', token);
+         this.userService.getUserInfo(token).subscribe(
+            (response: any) => {
+              const userId = response.data.id;
+              this.userService.getRoleUser(userId).subscribe(
+                (response: any) => {
+                  console.log(response.data[0].role);
+                 if (response.data[0].role === "admin") {
+                  this.userResponse = response.data;
                   console.log(this.userResponse);
+                  localStorage.setItem('userInfo', JSON.stringify(this.userResponse));
+                  Swal.fire({
+                    title: 'Đăng nhập thành công!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                  }).then(() => {
+                    window.location.href = '/';
+                  });
+                 } else {
+                  Swal.fire({
+                    title: 'Đăng nhập thất bại!',
+                    text: 'Bạn không có quyền truy cập!',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                  });
+                 }
+                },
+                error => {
+                  console.log(error);
                 }
-              )
+              );
+            },
+            error => {
+              console.log(error);
             }
-          });
+          );
         },
         error => {
           console.log(error);

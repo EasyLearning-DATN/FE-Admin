@@ -5,6 +5,7 @@ import { ReportResponses } from 'src/app/responses/report/report.responses';
 import { QuestionListResponses } from 'src/app/responses/question/question.responses';
 import { QuestionTypeResponses } from 'src/app/responses/question-type/question-type.responses';
 import { UserResponse } from 'src/app/responses/user/user.responses';
+import { InvoiceResponses } from 'src/app/responses/invoice/invoice.responses';
 
 @Injectable({
   providedIn: 'root',
@@ -86,5 +87,19 @@ export class SharedService {
 
   set user(value: UserResponse[]) {
     this._user = value;
+  }
+
+  private _invoices!: InvoiceResponses[];
+
+  get invoice(): InvoiceResponses[] {
+    return this._invoices;
+  }
+
+  set invoice(value: InvoiceResponses[]) {
+    this._invoices = value;
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
   }
 }

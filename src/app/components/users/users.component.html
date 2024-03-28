@@ -67,7 +67,9 @@
                                 <td>{{user.fullName}}</td>
                                 <td>{{user.email}}</td>
                                 <td>{{user.username}}</td>
-                                <td>{{user.locked? 'Khoá' : 'Hoạt động'}}</td>
+                                <td>
+                                    {{user.locked? 'Khoá' : 'Hoạt động'}}
+                                </td>
                                 <td>
                                     <a class="me-3">
                                         <img src="assets/img/icons/edit.svg" alt="img" (click)="openModal(user)">
@@ -101,32 +103,32 @@
                     <div class="">
                         <input type="text" class="form-control" value="{{userDetail.username}}" readonly>
                     </div>
-                    <label class="col-sm-6 col-form-label">Trạng thái: <b> {{userDetail.locked? 'Khoá' : 'Hoạt động'}} </b></label>
+                    <label class="col-sm-6 col-form-label">Trạng thái: <b> {{userDetail.locked? 'Khoá' : 'Hoạt động'}}
+                        </b></label>
                     <div class="">
                         <div class="form-check form-switch">
-                            <label class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" [(ngModel)]="userDetail.locked">Khoá/Hoạt động
-                            </label>
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+                                [checked]="userDetail.locked" (change)="changeStatus(userDetail.id)">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Khoá</label>
                         </div>
                     </div>
                     <label class="col-sm-3 col-form-label">ROLE</label>
                     <div class="">
                         <select class="form-select" #selectedRole (change)="onChange(selectedRole.value)">
-                            <option [ngValue]="null" disabled>Chọn role</option>
-                            <option [value]="userDetail.role.id" [selected]="userDetail.role.role === 'user'">User
-                            </option>
-                            <option [value]="userDetail.role.id" [selected]="userDetail.role.role === 'admin'">Admin
-                            </option>
-                            <option [value]="userDetail.role.id" [selected]="userDetail.role.role === 'Premium'">Premium
+                            <option [ngValue]="null" disabled selected>Chọn role</option>
+                            <option *ngFor="let roleItem of role" [value]="roleItem.id"
+                                [selected]="userDetail.role.id === roleItem.id">
+                                {{ roleItem.role }}
                             </option>
                         </select>
                     </div>
+
 
                 </div>
             </div>
             <div class="modal-footer">
                 <button (click)="d('Close click')" class="btn btn-secondary" type="button">Đóng</button>
-                <button (click)="onSave(userDetail.role.id, selectedRole.value)" class="btn btn-primary"
+                <button (click)="onSave(userDetail.id, selectedRole.value)" class="btn btn-primary"
                     type="button">Lưu</button>
             </div>
         </ng-template>

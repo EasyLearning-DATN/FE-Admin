@@ -12,6 +12,8 @@ import { QuestionDTO } from 'src/app/dtos/question/question.dto';
 export class QuestionService {
   private apiGetListQuestion = environment.API_URL + environment.API_PUBLIC + environment.VERSION_1 + environment.API_QUESTION;
   private apiCreateListQuestion = environment.API_URL + environment.API_MEMBER + environment.VERSION_1 + environment.API_QUESTION;
+  private apiDeleteQuestion = environment.API_URL + environment.API_MEMBER + environment.VERSION_1 + environment.API_QUESTION;
+  private apiUpdateQuestion = environment.API_URL + environment.API_MEMBER + environment.VERSION_1 + environment.API_QUESTION;
 
   constructor(private sharedService: SharedService, private http: HttpClient) {
   }
@@ -41,6 +43,14 @@ export class QuestionService {
     return this.http.post(this.apiCreateListQuestion, listQuestion, {
       headers,
     });
+  }
+
+  deleteQuestion(id: string) {
+    return this.http.delete(this.apiDeleteQuestion + '/' + id);
+  }
+
+  updateQuestion(updateQuestion: QuestionDTO, questionId: string) {
+    return this.http.put(this.apiUpdateQuestion + '/' + questionId, updateQuestion);
   }
 
 

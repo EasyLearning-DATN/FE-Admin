@@ -29,6 +29,8 @@ export const environment = {
     API_VALID_TOKEN: "/valid-token",
     API_QUESTION_TYPE: "/question-type",
     API_ANSWER: "/answer",
+    API_INVOICE: "/invoice",
+    API_PACKAGE_UPGRADE: "/package-upgrade",
     PATH_ID: "/{id}",
     ID: "id",
     LANGUAGE: "vi",

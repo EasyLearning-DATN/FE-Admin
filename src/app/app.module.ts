@@ -27,6 +27,8 @@ import {fab} from "@fortawesome/free-brands-svg-icons";
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import { ReportDetailComponent } from './components/lesson/report/report-detail/report-detail.component';
 import { LessonQuestionsComponent } from './components/lesson/lesson-questions/lesson-questions.component';
+import { InvoiceComponent } from './components/package-premium/invoice/invoice.component';
+import { LessonDetailComponent } from './components/lesson/lesson-detail/lesson-detail.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { LessonQuestionsComponent } from './components/lesson/lesson-questions/l
     LoginComponent,
     ReportComponent,
     ReportDetailComponent,
-    LessonQuestionsComponent
+    LessonQuestionsComponent,
+    InvoiceComponent,
+    LessonDetailComponent
   ],
   imports: [
     BrowserModule,

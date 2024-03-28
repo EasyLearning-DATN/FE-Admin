@@ -1,6 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { identity } from 'rxjs';
 import { LessonResponses } from 'src/app/responses/lesson/lesson.responses';
 import { QuestionTypeResponses } from 'src/app/responses/question-type/question-type.responses';
 import { QuestionResponses } from 'src/app/responses/question/question.responses';
@@ -22,7 +23,8 @@ export class UsersComponent {
   users: UserResponse[] = [];
   userDetail: any;
   error = null;
-  role: RoleResponse[]= [];
+  status = '';
+  role: RoleResponse[] = [];
   @ViewChild('modal') modal: any;
 
 
@@ -37,6 +39,7 @@ export class UsersComponent {
 
   ngOnInit(): void {
     this.fetchUser();
+    this.fetchRole();
   }
 
 
@@ -64,16 +67,40 @@ export class UsersComponent {
     );
   }
 
+  // get all role
+  private fetchRole() {
+    this.userService.getAllRole().subscribe(
+      (roles) => {
+        this.role = roles.data;
+        console.log(this.role);
+      },
+      (error) => {
+        this.error = error;
+      }
+    );
+  }
+
+    changeStatus(id: string) {
+      const newStatus = this.userDetail.locked ? 'UNLOCK' : 'LOCK';
+      this.userService.changeStatus(id, newStatus).subscribe(
+        res => {
+          this.fetchUser();
+        },
+        error => {
+        }
+      );
+    }
+
   onChange(selectedValue: any) {
-    console.log(selectedValue); 
-}
+    console.log(selectedValue);
+  }
 
   onSave(userId: string, roleId: string) {
     this.userService.updateRoleUser(userId, roleId).subscribe(
-      res =>{ 
+      res => {
         Swal.fire('Success', 'Update role success', 'success');
         this.fetchUser();
-      } ,
+      },
       error => {
         Swal.fire('Error', 'Update role error', 'error');
       }
