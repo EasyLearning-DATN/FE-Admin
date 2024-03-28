@@ -82,8 +82,26 @@ export class UserService {
     });
   }
 
+  changeStatus(userId: String, status: string): Observable<any> {
+    return this.http.patch(this.apiUser + '/change-status/' + userId, { status }, {
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`
+      }
+    });
+  
+  }
+
   deleteUser(userId: any): Observable<any> {
     return this.http.delete(this.apiUser + '/' + userId, {
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`
+      }
+    });
+  }
+
+  // get all role
+  getAllRole(): Observable<any> {
+    return this.http.get(this.apiGetRole + '/all', {
       headers: {
         Authorization: `Bearer ${this.getToken()}`
       }
@@ -101,10 +119,12 @@ export class UserService {
     params: Params
     });
   }
+  
 
-  updateRoleUser(userId: any, roleId: any): Observable<any> {
-    return this.http.patch(this.apiGetRole, {
-      userId, roleId
+  updateRoleUser(userID: any, roleId: string): Observable<any> {
+    return this.http.put(this.apiGetRole, {
+      userID, 
+      roleIds: [roleId]
     }, {
       headers: {
         Authorization: `Bearer ${this.getToken()}`

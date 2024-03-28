@@ -5,10 +5,6 @@
                 <h4>Danh sách bài học</h4>
                 <h6>Quản lý danh sách bài học</h6>
             </div>
-            <!-- <div class="page-btn">
-                <a href="addproduct.html" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img"
-                        class="me-1">Add New Product</a>
-            </div> -->
         </div>
 
         <div class="card">
@@ -42,65 +38,6 @@
                         </ul>
                     </div>
                 </div>
-
-                <!-- <div class="card mb-0" id="filter_inputs">
-                    <div class="card-body pb-0">
-                        <div class="row">
-                            <div class="col-lg-12 col-sm-12">
-                                <div class="row">
-                                    <div class="col-lg col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <select class="select">
-                                                <option>Choose Product</option>
-                                                <option>Macbook pro</option>
-                                                <option>Orange</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <select class="select">
-                                                <option>Choose Category</option>
-                                                <option>Computers</option>
-                                                <option>Fruits</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <select class="select">
-                                                <option>Choose Sub Category</option>
-                                                <option>Computer</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <select class="select">
-                                                <option>Brand</option>
-                                                <option>N/D</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg col-sm-6 col-12 ">
-                                        <div class="form-group">
-                                            <select class="select">
-                                                <option>Price</option>
-                                                <option>150.00</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-1 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <a class="btn btn-filters ms-auto"><img
-                                                    src="assets/img/icons/search-whites.svg" alt="img"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
 
                 <div class="table-responsive">
                     <table class="table  datanew">
@@ -141,11 +78,8 @@
                                 <td>{{lesson.is_public ? 'Công khai' : 'Không công khai'}}</td>
                                 <td>{{lesson.user_info.fullName}}</td>
                                 <td>
-                                    <a class="me-3" (click)="openModal(lesson)">
-                                        <img src="assets/img/icons/eye.svg" alt="img">
-                                    </a>
-                                    <a class="me-3" href="editproduct.html">
-                                        <img src="assets/img/icons/edit.svg" alt="img">
+                                    <a class="me-3">
+                                        <img src="assets/img/icons/edit.svg" alt="img" (click)="viewLessonDetail(lesson)">
                                     </a>
                                     <a class="confirm-text" href="javascript:void(0);">
                                         <img src="assets/img/icons/delete.svg" alt="img">
@@ -154,61 +88,16 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="pagination">
+                        <button class="btn btn-page" [disabled]="currentPage === 0"
+                            (click)="onPageChange(currentPage - 1)">Previous</button>
+                        <button class="btn btn-page" *ngFor="let page of totalPageArray" (click)="onPageChange(page)"
+                            [class.active]="currentPage === page">{{ page }}</button>
+                        <button class="btn btn-page" [disabled]="currentPage === totalPages"
+                            (click)="onPageChange(currentPage + 1)">Next</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <ng-template #modal let-c="close" let-d="dismiss">
-            <div class="modal-header">
-                <h4 class="modal-title">Chi tiết bài học</h4>
-                <button (click)="d('Cross click')" aria-label="Close" class="btn-close" type="button"></button>
-            </div>
-            <div class="modal-body">
-                <!-- tên bài học -->
-                <div class="form-group mb-2 row">
-                    <label class="col-sm-3 col-form-label">Tên bài học</label>
-                    <div class="">
-                        <input type="text" class="form-control" value="{{lessonDetail.name}}" readonly>
-                    </div>
-                    <label class="col-sm-3 col-form-label">Mô tả</label>
-                    <div class="">
-                        <input type="text" class="form-control" value="{{lessonDetail.description}}" readonly>
-                    </div>
-                    <label class="col-sm-3 col-form-label">Người tạo</label>
-                    <div class="">
-                        <input type="text" class="form-control" value="{{lessonDetail.user_info.fullName}}" readonly>
-                    </div>
-                    <label class="col-sm-3 col-form-label">Câu hỏi có trong bài: </label>
-                    <div class="">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Câu hỏi</th>
-                                    <th scope="col">Câu trả lời</th>
-                                    <th scope="col">Hành động</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let question of lessonDetail.questions; let i = index">
-                                    <th scope="row">{{ i + 1 }}</th>
-                                    <td>{{ question.title }}</td>
-                                    <td>
-                                        <div *ngFor="let answer of question.answers">
-                                            <input type="checkbox" [value]="answer.value" [checked]="answer.is_correct" readonly> {{answer.value}}
-                                          </div>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger">Delete</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button (click)="d('Close click')" class="btn btn-secondary" type="button">Đóng</button>
-            </div>
-        </ng-template>
     </div>
 </div>

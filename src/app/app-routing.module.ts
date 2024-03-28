@@ -7,6 +7,8 @@ import { LessonComponent } from './components/lesson/lesson.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReportComponent } from './components/lesson/report/report.component';
 import { UsersComponent } from './components/users/users.component';
+import { InvoiceComponent } from './components/package-premium/invoice/invoice.component';
+import { LessonDetailComponent } from './components/lesson/lesson-detail/lesson-detail.component';
 
 
 const routes: Routes = [
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'list-lesson', component: LessonComponent},
   { path: 'list-user', component: UsersComponent},
   { path: 'report-lesson', component: ReportComponent},
+  { path: 'list-invoice', component: InvoiceComponent},
+  { path: 'lesson-detail', component: LessonDetailComponent},
 ];
 
 @NgModule({

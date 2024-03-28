@@ -5346,6 +5346,10 @@ span.select2-container.select2-container--default.select2-container--open {
     font-size: 12px
 }
 
+.dataTables_length {
+    display: none; /* Ẩn phần tử "Show per page" */
+}
+
 .productimgname img {
     margin-right: 10px
 }

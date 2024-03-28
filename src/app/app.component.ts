@@ -15,9 +15,9 @@ export class AppComponent implements OnInit {
   // biến isLogin mặt định false
   isLogin: boolean = false;
 
-  // lấy token từ localStorage
-  token = localStorage.getItem('token');
-  // nếu có token set isLogin = true
+  // lấy userInfo từ localStorage
+  token = localStorage.getItem('userInfo');
+  // nếu có userInfo set isLogin = true
   ngOnInit() {
     if (this.token) {
       this.isLogin = true;

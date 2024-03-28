@@ -1,0 +1,53 @@
+<div class="page-wrapper">
+    <div class="content">
+        <div class="page-header">
+            <div class="page-title">
+                <h4>Chi tiết bài học</h4>
+            </div>
+        </div>
+
+        <div class="card" *ngIf="lessonDetail">
+            <div class="card-body">
+                <!-- input -->
+                <div class="form-group row">
+                    <label for="inputLessonName" class="col-sm-2 col-form-label">Tên bài học</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputLessonName" placeholder="Tên bài học" value="{{lessonDetail.name}}">
+                    </div>
+                    <label for="inputLessonName" class="col-sm-2 col-form-label">Mô tả</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputLessonName" placeholder="Mô tả" value="{{lessonDetail.description}}">
+                    </div>
+                    <label for="inputLessonName" class="col-sm-2 col-form-label">Người tạo</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputLessonName" placeholder="Người tạo"  value="{{lessonDetail.user_info.fullName}}">
+                    </div>
+                </div>
+                <!-- table câu hỏi có trong bài -->
+                <div class="form-group mb-3">
+                    <label for="inputLessonName" class="col-sm-2 col-form-label">Câu hỏi có trong bài</label>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Câu hỏi</th>
+                                <th scope="col">Câu trả lời</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let question of questions; let i = index">
+                                <th scope="row">{{ i + 1 }}</th>
+                                <td>{{ question.title }}</td>
+                                <td>
+                                    <div *ngFor="let answer of question.answers">
+                                        <input type="checkbox" [value]="answer.value" [checked]="answer.is_correct" readonly> {{answer.value}}
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
